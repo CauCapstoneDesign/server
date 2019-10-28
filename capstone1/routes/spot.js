@@ -33,7 +33,7 @@ app.post('/newspot', function (req, res) {
 
 
 app.get('/getspot', function (req, res, next) {
-    res.send("Oh no1");
+    res.send("Oh no12");
 
     connection.query('SELECT * from UserInformation', function (err, rows, fields) {
         if (!err)
