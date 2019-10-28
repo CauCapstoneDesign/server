@@ -34,7 +34,7 @@ app.post('/login1', function (req, res) {
                 message = 'new account';
                 temp = 1;
             } else {
-                console.log("fuck2");
+                console.log("fuck3");
                 resultCode = 200;
                 message = 'Success';
             }
