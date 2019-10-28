@@ -18,13 +18,13 @@ app.post('/login1', function (req, res) {
     var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
     var sql = 'SELECT * FROM UserInformation WHERE UserEmail = ?';
+    var temp = 0;
 
     connection.connect();
 
     connection.query(sql, userEmail, function (err, result) {
         var resultCode = 'no RDB';
         var message = 'My SQL TEST ' + userEmail;
-        var temp = 0;
         console.log("1");
         if (err) {
             console.log(err);
