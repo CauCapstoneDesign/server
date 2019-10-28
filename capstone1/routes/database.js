@@ -17,7 +17,7 @@ app.post('/login1', function (req, res) {
     var userEmail = req.body.userEmail;
     var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
-    var sql = 'SELECT * FROM UserInformation WHERE gmail = ?';
+    var sql = "SELECT * FROM UserInformation WHERE gmail = ?";
     var temp = 0;
 
     connection.connect();
