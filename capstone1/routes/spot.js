@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 app.post('/newspot', function (req, res) {
     console.log(req.body);
     var location = req.body.location;
-    var authorId = req.body.authorID;
+    var authorID = req.body.authorID;
     // var spotId = req.body.spotID;
     var grade = req.body.grade;
 
@@ -27,11 +27,6 @@ app.post('/newspot', function (req, res) {
         } else {
             console.log(rows.insertId);
         }
-    });
-
-    res.json({
-            'code': resultCode,
-            'message': message
     });
 
 })
