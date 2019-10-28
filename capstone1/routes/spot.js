@@ -18,6 +18,7 @@ app.post('/newspot', function (req, res) {
     var authorID = req.body.authorID;
     // var spotId = req.body.spotID;
     var grade = req.body.grade;
+    var done = "no";
 
     var sql = 'INSERT INTO SpotInformation (location, authorID, grade) VALUES(?, ?, ?)';
     var params = [location, authorID, grade];
@@ -26,7 +27,12 @@ app.post('/newspot', function (req, res) {
             console.log(err);
         } else {
             console.log(rows.insertId);
+            done = "done";
         }
+    });
+
+    res.json({
+        'status': done
     });
 
 })
