@@ -45,7 +45,7 @@ app.get('/getspot', function (req, res, next) {
         if (!err)
             res.send(rows);
         else
-            console.log('Error while performing Query.', err);
+            console.log('Error while performings Query.', err);
     });
 
 });
