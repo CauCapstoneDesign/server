@@ -25,7 +25,7 @@ app.post('/login1', function (req, res) {
     connection.connect();
 
     connection.query(sql, userEmail, function (err, row) {
-        console.log("1");
+        console.log(row);
         if (err) {
             console.log(err);
         } else {
