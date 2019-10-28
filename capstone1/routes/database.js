@@ -17,37 +17,49 @@ app.post('/login1', function (req, res) {
     var userEmail = req.body.userEmail;
     var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
-    var sql = 'select * from UserInformation where UserEmail = ?';
+    var sql = 'SELECT * FROM UserInformation WHERE UserEmail = ?';
+
+    connection.connect();
 
     connection.query(sql, userEmail, function (err, result) {
         var resultCode = 'no RDB';
         var message = 'My SQL TEST ' + userEmail;
-
+        var temp = 0;
+        console.log("1");
         if (err) {
             console.log(err);
         } else {
             if (result.length === 0) {
-                var sql = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
-                var params = [userToken, userEmail, userNickname];
-                connection.query(sql, params, function (err, rows, fields) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log(rows.insertId);
-                    }
-                });
+                console.log("fuck2");
                 message = 'new account';
+                temp = 1;
             } else {
+                console.log("fuck2");
                 resultCode = 200;
                 message = 'Success';
             }
         }
 
-        res.json({
-            'code': resultCode,
-            'message': message
-        });
     })
+
+    if (temp === 1) {
+        var sql = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
+        var params = [userToken, userEmail, userNickname];
+        connection.query(sql, params, function (err, rows, fields) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(rows.insertId);
+            }
+        });
+    }
+
+    res.json({
+        'code': resultCode,
+        'message': message
+    });
+
+    connection.end();
 });
 
 app.get('/login', function (req, res, next) {
