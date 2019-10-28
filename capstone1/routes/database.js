@@ -17,19 +17,19 @@ app.post('/login1', function (req, res) {
     var userEmail = req.body.userEmail;
     var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
-    var sql = 'SELECT * FROM UserInformation WHERE UserEmail = ?';
+    var sql = 'SELECT * FROM UserInformation WHERE gmail = ?';
     var temp = 0;
 
     connection.connect();
 
-    connection.query(sql, userEmail, function (err, result) {
+    connection.query(sql, userEmail, function (err, row) {
         var resultCode = 'no RDB';
         var message = 'My SQL TEST ' + userEmail;
         console.log("1");
         if (err) {
             console.log(err);
         } else {
-            if (result.length === 0) {
+            if (row.length === 0) {
                 console.log("fuck2");
                 message = 'new account';
                 temp = 1;
@@ -42,22 +42,22 @@ app.post('/login1', function (req, res) {
 
     })
 
-    if (temp === 1) {
-        var sql = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
-        var params = [userToken, userEmail, userNickname];
-        connection.query(sql, params, function (err, rows, fields) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(rows.insertId);
-            }
-        });
-    }
+    // if (temp === 1) {
+    //     var sql2 = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
+    //     var params = [userToken, userEmail, userNickname];
+    //     connection.query(sql2, params, function (err, rows, fields) {
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             console.log(rows.insertId);
+    //         }
+    //     });
+    // }
 
-    // res.json({
-    //     'code': resultCode,
-    //     'message': message
-    // });
+    res.json({
+        'code': resultCode,
+        'message': message
+    });
 
     connection.end();
 });
