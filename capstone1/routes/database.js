@@ -15,9 +15,9 @@ var connection = mysql.createConnection({
 app.post('/login1', function (req, res) {
     console.log(req.body);
     var userEmail = req.body.userEmail;
-    var userName = req.body.userName;
+    var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
-    var sql = 'select * from Users where UserEmail = ?';
+    var sql = 'select * from UserInformation where UserEmail = ?';
 
     connection.query(sql, userEmail, function (err, result) {
         var resultCode = 'no RDB';
@@ -27,8 +27,16 @@ app.post('/login1', function (req, res) {
             console.log(err);
         } else {
             if (result.length === 0) {
-                // ToDo. Register In
-                message = userEmail + '테스트중입니다.';
+                var sql = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
+                var params = [userToken, userEmail, userNickname];
+                connection.query(sql, params, function (err, rows, fields) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(rows.insertId);
+                    }
+                });
+                message = 'new account';
             } else {
                 resultCode = 200;
                 message = 'Success';
