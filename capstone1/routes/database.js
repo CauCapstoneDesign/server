@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
     port: 3306
 });
 
-app.post('/login1', function (req, res) {
+app.post('/login', function (req, res) {
     console.log(req.body);
     var userEmail = req.body.userEmail;
     var userNickname = req.body.userNickname;
@@ -21,11 +21,7 @@ app.post('/login1', function (req, res) {
     var resultCode = 'no RDB..';
     var message = 'My SQL TEST ' + userEmail;
     var temp = 0;
-
-
-
-
-
+    
     connection.query(sql, userEmail, function (err, row) {
         console.log(row);
         if (err) {
@@ -61,18 +57,18 @@ app.post('/login1', function (req, res) {
 
 });
 
-app.get('/login', function (req, res, next) {
-    console.log("fuck");
-    res.send("Oh no1");
-    connection.connect();
+// app.get('/login', function (req, res, next) {
+//     console.log("fuck");
+//     res.send("Oh no1");
+//     connection.connect();
 
-    connection.query('SELECT * from UserInformation', function (err, rows, fields) {
-        if (!err)
-            console.log('The solution is: ', rows);
-        else
-            console.log('Error while performing Query.', err);
-    });
+//     connection.query('SELECT * from UserInformation', function (err, rows, fields) {
+//         if (!err)
+//             console.log('The solution is: ', rows);
+//         else
+//             console.log('Error while performing Query.', err);
+//     });
 
-});
+// });
 
 module.exports = app;
