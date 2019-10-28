@@ -40,13 +40,12 @@ app.post('/newspot', function (req, res) {
 
 
 app.get('/getspot', function (req, res, next) {
-    res.send("Oh no12");
 
-    connection.query('SELECT * from UserInformation', function (err, rows, fields) {
+    connection.query('SELECT * from SpotInformation', function (err, rows, fields) {
         if (!err)
             res.send(rows);
         else
-            console.log('Error while performing Query.', err);
+            console.log('Error while performings Query.', err);
     });
 
 });
