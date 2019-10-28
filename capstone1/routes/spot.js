@@ -21,7 +21,7 @@ app.post('/newspot', function (req, res) {
 
     var sql = 'INSERT INTO SpotInformation (location, authorID, grade) VALUES(?, ?, ?)';
     var params = [location, authorID, grade];
-    connection.query(sql2, params, function (err, rows, fields) {
+    connection.query(sql, params, function (err, rows, fields) {
         if (err) {
             console.log(err);
         } else {
@@ -33,7 +33,7 @@ app.post('/newspot', function (req, res) {
 
 
 app.get('/getspot', function (req, res, next) {
-    res.send("Oh no1");
+    res.send("Oh no12");
 
     connection.query('SELECT * from UserInformation', function (err, rows, fields) {
         if (!err)
