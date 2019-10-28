@@ -18,11 +18,13 @@ app.post('/login1', function (req, res) {
     var userNickname = req.body.userNickname;
     var userToken = req.body.userToken;
     var sql = "SELECT * FROM UserInformation WHERE gmail = ?";
-    var resultCode = 'no RDB';
+    var resultCode = 'no RDB..';
     var message = 'My SQL TEST ' + userEmail;
     var temp = 0;
 
-    connection.connect();
+
+
+
 
     connection.query(sql, userEmail, function (err, row) {
         console.log(row);
@@ -57,7 +59,6 @@ app.post('/login1', function (req, res) {
     })
 
 
-    connection.end();
 });
 
 app.get('/login', function (req, res, next) {
@@ -72,7 +73,6 @@ app.get('/login', function (req, res, next) {
             console.log('Error while performing Query.', err);
     });
 
-    connection.end();
 });
 
 module.exports = app;
