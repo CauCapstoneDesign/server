@@ -16,7 +16,7 @@ app.post('/newspot', function (req, res) {
     console.log(req.body);
     var location = req.body.location;
     var authorId = req.body.authorID;
-    var spotId = req.body.spotID;
+    // var spotId = req.body.spotID;
     var grade = req.body.grade;
 
     var sql = 'INSERT INTO SpotInformation (location, authorID, grade) VALUES(?, ?, ?)';
