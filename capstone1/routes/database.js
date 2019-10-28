@@ -42,7 +42,7 @@ app.post('/login1', function (req, res) {
 
     })
 
-    if (temp === 1) {
+    if (temp == 1) {
         var sql2 = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
         var params = [userToken, userEmail, userNickname];
         connection.query(sql2, params, function (err, rows, fields) {
