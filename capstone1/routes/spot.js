@@ -25,14 +25,15 @@ app.post('/newspot', function (req, res) {
     connection.query(sql, params, function (err, rows, fields) {
         if (err) {
             console.log(err);
+            res.json({
+                'status': "no"
+            });
         } else {
             console.log(rows.insertId);
-            done = "done";
+            res.json({
+                'status': "done"
+            });
         }
-    });
-
-    res.json({
-        'status': done
     });
 
 })
