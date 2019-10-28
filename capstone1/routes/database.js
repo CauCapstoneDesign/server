@@ -54,10 +54,10 @@ app.post('/login1', function (req, res) {
         });
     }
 
-    res.json({
-        'code': resultCode,
-        'message': message
-    });
+    // res.json({
+    //     'code': resultCode,
+    //     'message': message
+    // });
 
     connection.end();
 });
