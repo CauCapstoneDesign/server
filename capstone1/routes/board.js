@@ -26,21 +26,21 @@ app.post('/newpost', function (req, res) {
         if (err) {
             console.log(err);
             res.json({
-                'status': "no"
+                'status': err
             });
         } else {
             const map1 = photo_url.map(x => {
                 return [rows.insertId];
             })
-            sql = 'INSERT INTO board ( board_id, photo_url) VALUES( ?, ?, ?)'
+            sql = 'INSERT INTO board ( board_id, photo_url) VALUES ?'
             connection.query(sql, map1, function (err, rows, fields) {
                 if (err) {
                     res.json({
-                        'status': "no"
+                        'status': err
                     })
                 } else {
                     res.json({
-                        'status': "done"
+                        'status': "success"
                     });
                 }
             });
