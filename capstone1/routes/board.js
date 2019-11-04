@@ -52,7 +52,7 @@ app.post('/newpost', function (req, res) {
 
 
 app.get('/getpost', function (req, res, next) {
-    connection.query('SELECT * FROM board NATURAL JOIN board_phote', function (err, rows, fields) {
+    connection.query('SELECT * FROM board NATURAL JOIN board_photo', function (err, rows, fields) {
         if (!err)
             res.send(rows);
         else
