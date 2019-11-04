@@ -64,7 +64,7 @@ app.post('/spotrating', function (req, res) {
 app.post('/getrating', function (req, res) {
     var spot_id = req.body.spot_id;
 
-    var sql = 'SELECT FROM spot_rating WHERE spot_id=?';
+    var sql = 'SELECT * FROM spot_rating WHERE spot_id=?';
     var param = spot_id;
     connection.query(sql, param, function (err, rows, fields) {
         if (err) {
