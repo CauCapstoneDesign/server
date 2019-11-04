@@ -22,7 +22,7 @@ app.post('/newspot', function (req, res) {
     var longitude = req.body.longitude;
     var done = "no";
 
-    var sql = 'INSERT INTO spot (name, address, photo_url, author_id, latitude, longitude) VALUES(?)';
+    var sql = 'INSERT INTO spot (name, address, photo_url, author_id, latitude, longitude) VALUES(?, ?, ?, ?, ?, ?)';
     var params = [name, address, photo_url, author_id, latitude, longitude];
     connection.query(sql, params, function (err, rows, fields) {
         if (err) {
