@@ -46,7 +46,7 @@ app.post('/spotrating', function (req, res) {
     var author_id = req.body.author_id;
 
     var sql = 'INSERT INTO spot_rating (spot_id, grade, comment, author_id) VALUES(?, ?, ?, ?)';
-    var params = [spodt_id, grade, comment, author_id];
+    var params = [spot_id, grade, comment, author_id];
     connection.query(sql, params, function (err, rows, fields) {
         if (err) {
             console.log(err);
