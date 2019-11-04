@@ -33,7 +33,7 @@ app.post('/newpost', function (req, res) {
                 return [rows.insertId];
             })
             console.log(rows.insertId);
-            sql = 'INSERT INTO board ( board_id, photo_url) VALUES ?'
+            sql = 'INSERT INTO board ( board_id, photo_url) VALUES (?, ?)'
             connection.query(sql, map1, function (err, rows, fields) {
                 if (err) {
                     res.json({
