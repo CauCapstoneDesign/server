@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 
 app.post('/newspot', function (req, res) {
     console.log(req.body);
-    var id = req.body.id;
+    var name = req.body.name;
     var author_id = req.body.author_id;
     var address = req.body.address;
     var photo_url = req.body.photo_url;
@@ -22,8 +22,8 @@ app.post('/newspot', function (req, res) {
     var longitude = req.body.longitude;
     var done = "no";
 
-    var sql = 'INSERT INTO spot (id, name, address, photo_url, author_id, latitude, longitude) VALUES(?, ?, ?)';
-    var params = [id, name, address, photo_url, author_id, latitude, longitude];
+    var sql = 'INSERT INTO spot (name, address, photo_url, author_id, latitude, longitude) VALUES(?)';
+    var params = [name, address, photo_url, author_id, latitude, longitude];
     connection.query(sql, params, function (err, rows, fields) {
         if (err) {
             console.log(err);
