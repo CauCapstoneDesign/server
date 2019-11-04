@@ -61,34 +61,25 @@ app.post('/spotrating', function (req, res) {
     });
 })
 
+app.post('/getrating', function (req, res) {
+    var spot_id = req.body.spot_id;
 
-app.post('/spotsearchbylocation', function (req, res) {
-    console.log(req.body);
-    var location = req.body.location;
-    var authorID = req.body.authorID;
-    // var spotId = req.body.spotID;
-    var grade = req.body.grade;
-    var done = "no";
-
-    var sql = 'INSERT INTO SpotInformation (location, authorID, grade) VALUES(?, ?, ?)';
-    var params = [location, authorID, grade];
-    connection.query(sql, params, function (err, rows, fields) {
+    var sql = 'SELECT FROM spot_rating WHERE spot_id=?';
+    var param = spot_id;
+    connection.query(sql, param, function (err, rows, fields) {
         if (err) {
             console.log(err);
             res.json({
                 'status': "no"
             });
         } else {
-            console.log(rows.insertId);
-            res.json({
-                'status': "done"
-            });
+            res.send(rows);
         }
     });
 })
 
 app.get('/getspot', function (req, res, next) {
-    connection.query('SELECT * from SpotInformation', function (err, rows, fields) {
+    connection.query('SELECT * FROM spot', function (err, rows, fields) {
         if (!err)
             res.send(rows);
         else
