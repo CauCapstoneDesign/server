@@ -29,8 +29,8 @@ app.post('/newpost', function (req, res) {
                 'status': err
             });
         } else {
-            const map1 = photo_url.map(x => {
-                return [rows.insertId];
+            const map1 = photo_url.map(url => {
+                return [rows.insertId, url];
             })
             console.log(rows.insertId);
             console.log(map1);
