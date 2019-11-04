@@ -50,6 +50,28 @@ app.post('/newpost', function (req, res) {
     });
 })
 
+app.post('/newcomment', function (req, res) {
+    console.log(req.body);
+    var board_id = req.body.board_id;
+    var content = req.body.content;
+    var author_id = req.body.author_id;
+
+    var sql = 'INSERT INTO comment (board_id, content, author_id) VALUES( ?, ?, ?)';
+    var params = [board_id, content, author_id];
+    connection.query(sql, params, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': err
+            });
+        } else {
+            res.json({
+                'status': "done"
+            });
+        }
+    });
+})
+
 
 app.get('/getpost', function (req, res, next) {
     connection.query('SELECT * FROM board NATURAL JOIN board_photo', function (err, rows, fields) {
