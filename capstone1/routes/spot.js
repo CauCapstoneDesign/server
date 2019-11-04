@@ -39,6 +39,29 @@ app.post('/newspot', function (req, res) {
     });
 })
 
+app.post('/spotrating', function (req, res) {
+    var spot_id = req.body.spot_id;
+    var grade = req.body.grade;
+    var comment = req.body.comment;
+    var author_id = req.body.author_id;
+
+    var sql = 'INSERT INTO spot_rating (spot_id, grade, comment, author_id) VALUES(?, ?, ?, ?)';
+    var params = [spodt_id, grade, comment, author_id];
+    connection.query(sql, params, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': "no"
+            });
+        } else {
+            res.json({
+                'status': "done"
+            });
+        }
+    });
+})
+
+
 app.post('/spotsearchbylocation', function (req, res) {
     console.log(req.body);
     var location = req.body.location;
