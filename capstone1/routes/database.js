@@ -17,7 +17,7 @@ app.post('/login', function (req, res) {
     var gmail = req.body.gmail;
     var nickname = req.body.nickname;
     var id = req.body.id;
-    var sql = "SELECT * FROM UserInformation WHERE gmail = ?";
+    var sql = "SELECT * FROM user_information WHERE gmail = ?";
     var resultCode = 'no RDB..';
     var message = 'My SQL TEST ' + gmail;
     var temp = 0;
@@ -33,7 +33,7 @@ app.post('/login', function (req, res) {
         } else {
             if (row.length === 0) {
                 console.log("fuck2");
-                var sql2 = 'INSERT INTO UserInformation (id, gmail, nickname) VALUES(?, ?, ?)';
+                var sql2 = 'INSERT INTO user_information (id, gmail, nickname) VALUES(?, ?, ?)';
                 var params = [id, gmail, nickname];
                 connection.query(sql2, params, function (err, rows, fields) {
                     if (err) {
