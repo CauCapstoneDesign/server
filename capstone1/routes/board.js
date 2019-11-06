@@ -82,4 +82,23 @@ app.get('/getpost', function (req, res, next) {
     });
 });
 
+app.post('/getcomment', function (req, res) {
+    console.log(req.body);
+    var board_id = req.body.board_id;
+    var sql = 'SELECT FROM comment WHERE board_id = ?';
+    var param = board_id;
+    connection.query(sql, param, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': err
+            });
+        } else {
+            res.send(rows);
+        }
+    });
+})
+
+
+
 module.exports = app;
