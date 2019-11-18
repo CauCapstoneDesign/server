@@ -1,4 +1,5 @@
-from urllib.request import Request, urlopen
+# -*- coding: utf-8 -*-
+import urllib
 from bs4 import BeautifulSoup
 import pymysql.cursors
 
@@ -18,13 +19,13 @@ def main():
     time = ""
     title = ""
 
-    html = urlopen(url).read()
+    html = urllib.urlopen(url).read()
     soup = BeautifulSoup(html, "html.parser")  # 기본 파서
 
     h3 = soup.find("h3")
     a = h3.find("a")
     url = a["href"]
-    html = urlopen(url).read()
+    html = urllib.urlopen(url).read()
     soup = BeautifulSoup(html, "html.parser")
 
     result = soup.find('div', class_='span12 column_container td-post-content')
@@ -44,8 +45,7 @@ def main():
     result = soup.find('header')
     h1 = result.find('h1')
     title = h1.text
-    print(title)
-
+    
     result = soup.find('time')
     time = result.text
 
