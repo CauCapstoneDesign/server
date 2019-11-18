@@ -11,6 +11,7 @@ var dbRouter = require('./routes/database');
 var spotRouter = require('./routes/spot');
 var boardRouter = require('./routes/board');
 var spawn = require("child_process").spawn;
+const schedule = require('node-schedule');
 // var process = spawn('python', ["./python/apod.py"]);
 
 var job = schedule.scheduleJob('30 * * * * *', function () {
