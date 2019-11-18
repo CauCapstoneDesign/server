@@ -14,8 +14,9 @@ var spawn = require("child_process").spawn;
 const schedule = require('node-schedule');
 // var process = spawn('python', ["./python/apod.py"]);
 
-var job = schedule.scheduleJob('30 * * * * *', function () {
+var job = schedule.scheduleJob('0 30 12 * * *', function () {
   var process = spawn('python', ["./python/apod.py"]);
+  console.log("hi");
 });
 
 var app = express();
