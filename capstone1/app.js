@@ -11,6 +11,16 @@ var dbRouter = require('./routes/database');
 var spotRouter = require('./routes/spot');
 var boardRouter = require('./routes/board');
 
+var PythonShell = require('python-shell');
+
+var options = {
+  mode: 'text',
+  pythonPath: '',
+  pythonOptions: ['-u'],
+  scriptPath: './python',
+  args: ''
+};
+
 var app = express();
 
 // view engine setup
@@ -51,6 +61,11 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+PythonShell.run('apod.py', option, function (err, results) {
+  if (err) throw err;
+
+  console.log("done?");
+});
 
 
 module.exports = app;
