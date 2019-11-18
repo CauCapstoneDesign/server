@@ -61,8 +61,15 @@ app.post('/login', function (req, res) {
             }
         }
     })
+});
 
-
+app.get('/getapod', function (req, res, next) {
+    connection.query('SELECT * FROM apod', function (err, rows, fields) {
+        if (!err)
+            res.send(rows);
+        else
+            console.log('Error while performings Query.', err);
+    });
 });
 
 module.exports = app;
