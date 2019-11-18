@@ -11,17 +11,11 @@ var dbRouter = require('./routes/database');
 var spotRouter = require('./routes/spot');
 var boardRouter = require('./routes/board');
 var spawn = require("child_process").spawn;
-var process = spawn('python', ["./python/apod.py"]);
+// var process = spawn('python', ["./python/apod.py"]);
 
-// var PythonShell = require('python-shell');
-
-// var options = {
-//   mode: 'text',
-//   pythonPath: '',
-//   pythonOptions: ['-u'],
-//   scriptPath: './python',
-//   args: ''
-// };
+var job = schedule.scheduleJob('30 * * * * *', function () {
+  var process = spawn('python', ["./python/apod.py"]);
+});
 
 var app = express();
 
@@ -63,11 +57,6 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-// PythonShell.run('apod.py', option, function (err, results) {
-//   if (err) throw err;
-
-//   console.log("done?");
-// });
 
 
 module.exports = app;
