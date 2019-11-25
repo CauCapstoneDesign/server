@@ -72,15 +72,40 @@ app.post('/newcomment', function (req, res) {
     });
 })
 
-
-app.get('/getpost', function (req, res, next) {
-    connection.query('SELECT * FROM board NATURAL JOIN board_photo', function (err, rows, fields) {
-        if (!err)
+app.post('/getpost', function (req, res) {
+    console.log(req.body);
+    var offset = req.body.offset;
+    var limit = req.body.limit;
+    var sql = 'SELECT * FROM board LIMIT VALUES(?,?)';
+    var param = [offset, limit];
+    connection.query(sql, param, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': err
+            });
+        } else {
             res.send(rows);
-        else
-            console.log('Error while performings Query.', err);
+        }
     });
-});
+})
+
+app.post('/getcontent', function (req, res) {
+    console.log(req.body);
+    var board_id = req.body.board_id;
+    var sql = 'SELECT * FROM board NATURAL JOIN board_photo WHERE board_id = ?';
+    var param = board_id;
+    connection.query(sql, param, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': err
+            });
+        } else {
+            res.send(rows);
+        }
+    });
+})
 
 app.post('/getcomment', function (req, res) {
     console.log(req.body);
