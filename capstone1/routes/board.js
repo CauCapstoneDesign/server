@@ -76,7 +76,7 @@ app.post('/getpost', function (req, res) {
     console.log(req.body);
     var offset = req.body.offset;
     var limit = req.body.limit;
-    var sql = 'SELECT * FROM board LIMIT VALUES(?,?)';
+    var sql = 'SELECT * FROM board LIMIT (?,?)';
     var param = [offset, limit];
     connection.query(sql, param, function (err, rows, fields) {
         if (err) {
