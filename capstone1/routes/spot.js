@@ -79,12 +79,29 @@ app.post('/getrating', function (req, res) {
 })
 
 app.get('/getspot', function (req, res, next) {
-    connection.query('SELECT * FROM spot', function (err, rows, fields) {
+    connection.query('SELECT id,name,address,author_id,creation_time,latitude,longitude FROM spot', function (err, rows, fields) {
         if (!err)
             res.send(rows);
         else
             console.log('Error while performings Query.', err);
     });
 });
+
+app.post('/getspotphoto', function (req, res) {
+    var spot_id = req.body.spot_id;
+
+    var sql = 'SELECT photo_url FROM spot WHERE id=?';
+    var param = spot_id;
+    connection.query(sql, param, function (err, rows, fields) {
+        if (err) {
+            console.log(err);
+            res.json({
+                'status': "no"
+            });
+        } else {
+            res.send(rows);
+        }
+    });
+})
 
 module.exports = app;
