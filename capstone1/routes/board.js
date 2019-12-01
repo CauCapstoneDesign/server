@@ -74,8 +74,8 @@ app.post('/newcomment', function (req, res) {
 
 app.post('/getpost', function (req, res) {
     console.log(req.body);
-    var offset = req.body.offset;
-    var limit = req.body.limit;
+    var offset = parseInt(req.body.offset);
+    var limit = parseInt(req.body.limit);
     var sql = 'SELECT title,id FROM board LIMIT ?,?;';
     var param = [offset, limit];
     connection.query(sql, param, function (err, rows, fields) {
