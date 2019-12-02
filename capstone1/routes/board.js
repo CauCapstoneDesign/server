@@ -110,7 +110,7 @@ app.post('/getcontent', function (req, res) {
 app.post('/getcomment', function (req, res) {
     console.log(req.body);
     var board_id = parseInt(req.body.board_id);
-    var sql = 'SELECT FROM comment WHERE board_id = ?';
+    var sql = 'SELECT content FROM comment WHERE board_id = ?';
     var param = board_id;
     connection.query(sql, param, function (err, rows, fields) {
         if (err) {
