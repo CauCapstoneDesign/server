@@ -76,7 +76,7 @@ app.post('/getpost', function (req, res) {
     console.log(req.body);
     var offset = parseInt(req.body.offset);
     var limit = parseInt(req.body.limit);
-    var sql = 'SELECT title,id FROM board LIMIT ?,?;';
+    var sql = 'SELECT title,id,author_id,creation_time FROM board LIMIT ?,?;';
     var param = [offset, limit];
     connection.query(sql, param, function (err, rows, fields) {
         if (err) {
@@ -93,7 +93,7 @@ app.post('/getpost', function (req, res) {
 app.post('/getcontent', function (req, res) {
     console.log(req.body);
     var board_id = req.body.board_id;
-    var sql = 'SELECT * FROM board NATURAL JOIN board_photo WHERE board_id = ?';
+    var sql = 'SELECT content FROM board WHERE id = ?';
     var param = board_id;
     connection.query(sql, param, function (err, rows, fields) {
         if (err) {
